@@ -20,3 +20,7 @@ type Game = {
     radius: Vector;
   };
 };
+
+interface Renderable {
+  render(): void;
+}
