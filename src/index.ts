@@ -24,29 +24,45 @@ window.app = app;
 const user = new Paddle(app.stage);
 user.pos.x = Paddle.GUTTER;
 user.pos.y = 0.15 * BOARD_HEIGHT;
-user.render();
 
 const cpu = new Paddle(app.stage);
 cpu.pos.x = BOARD_WIDTH - Paddle.GUTTER - Paddle.WIDTH;
 cpu.pos.y = (BOARD_HEIGHT - Paddle.HEIGHT) * 0.75;
-cpu.render();
 
 // ADD BALL
 const ball = new Ball(app.stage);
 ball.pos.x = BOARD_WIDTH / 2;
 ball.pos.y = BOARD_HEIGHT / 2;
-ball.render();
 
 // ADD SCORES
 const userScore = new Score(app.stage);
 userScore.value = 0;
-userScore.pos.x = BOARD_WIDTH * 0.4;
+userScore.pos.x = BOARD_WIDTH * 0.35;
 userScore.pos.y = 25;
-userScore.render();
 
 // ADD SCORES
 const cpuScore = new Score(app.stage);
 cpuScore.value = 0;
 cpuScore.pos.x = BOARD_WIDTH * 0.6;
 cpuScore.pos.y = 25;
-cpuScore.render();
+
+function render() {
+  user.render();
+  cpu.render();
+  ball.render();
+  userScore.render();
+  cpuScore.render();
+}
+
+function update() {
+  ball.pos.x += Math.random() - 0.5;
+  ball.pos.y += Math.random() - 0.5;
+}
+
+(function loop() {
+  // recurse
+  requestAnimationFrame(loop);
+
+  update();
+  render();
+})();

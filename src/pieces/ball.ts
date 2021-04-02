@@ -29,7 +29,7 @@ export default class Ball {
     graphics.y = this.pos.y;
 
     // draw
-    graphics.beginFill(0xffffff);
+    graphics.beginFill(0xff0000);
     graphics.drawCircle(0, 0, Ball.RADIUS);
   }
 }

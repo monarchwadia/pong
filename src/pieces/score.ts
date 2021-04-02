@@ -4,7 +4,7 @@ export default class Score {
   pos: Vector;
   value: 0;
   private text: PIXI.Text;
-  static SIZE = 50;
+  static SIZE = 100;
 
   constructor(private stage: PIXI.Container) {
     this.pos = {
