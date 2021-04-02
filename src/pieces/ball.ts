@@ -1,11 +1,14 @@
 import * as PIXI from "pixi.js";
 
-export default class Paddle {
-  static WIDTH = 15;
-  static HEIGHT = 150;
-  static GUTTER = 10; // the gutter between the paddle and the wall behind it.
+export default class Ball {
+  static RADIUS = 10;
 
   pos: Vector = {
+    x: 0,
+    y: 0,
+  };
+
+  vel: Vector = {
     x: 0,
     y: 0,
   };
@@ -27,6 +30,6 @@ export default class Paddle {
 
     // draw
     graphics.beginFill(0xffffff);
-    graphics.drawRect(0, 0, Paddle.WIDTH, Paddle.HEIGHT);
+    graphics.drawCircle(0, 0, Ball.RADIUS);
   }
 }
