@@ -1,6 +1,7 @@
 import * as PIXI from "pixi.js";
 import Ball from "./pieces/ball";
 import Paddle from "./pieces/paddle";
+import Score from "./pieces/score";
 
 declare global {
   interface Window {
@@ -35,3 +36,17 @@ const ball = new Ball(app.stage);
 ball.pos.x = BOARD_WIDTH / 2;
 ball.pos.y = BOARD_HEIGHT / 2;
 ball.render();
+
+// ADD SCORES
+const userScore = new Score(app.stage);
+userScore.value = 0;
+userScore.pos.x = BOARD_WIDTH * 0.4;
+userScore.pos.y = 25;
+userScore.render();
+
+// ADD SCORES
+const cpuScore = new Score(app.stage);
+cpuScore.value = 0;
+cpuScore.pos.x = BOARD_WIDTH * 0.6;
+cpuScore.pos.y = 25;
+cpuScore.render();
