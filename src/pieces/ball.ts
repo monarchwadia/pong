@@ -15,20 +15,19 @@ export default class Ball implements Renderable {
     y: 0,
   };
 
-  graphics: PIXI.DisplayObject;
+  graphics: PIXI.Graphics;
 
   constructor() {
     this.graphics = new PIXI.Graphics();
   }
 
   render() {
+    this.graphics.x = this.pos.x;
+    this.graphics.y = this.pos.y;
+  }
+
+  initialDraw() {
     const { graphics } = this;
-
-    // sync graphics position with this position.
-    graphics.x = this.pos.x;
-    graphics.y = this.pos.y;
-
-    // draw
     graphics.beginFill(0xff0000);
     graphics.drawCircle(0, 0, Ball.RADIUS);
   }

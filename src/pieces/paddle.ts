@@ -14,7 +14,7 @@ export default class Paddle implements Renderable {
     y: 0,
   };
 
-  graphics: PIXI.DisplayObject;
+  graphics: PIXI.Graphics;
 
   constructor() {
     this.graphics = new PIXI.Graphics();
@@ -26,7 +26,10 @@ export default class Paddle implements Renderable {
     // sync graphics position with this position.
     graphics.x = this.pos.x;
     graphics.y = this.pos.y;
+  }
 
+  initialDraw() {
+    const { graphics } = this;
     // draw
     graphics.beginFill(0xffffff);
     graphics.drawRect(0, 0, Paddle.WIDTH, Paddle.HEIGHT);

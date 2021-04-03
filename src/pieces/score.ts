@@ -23,6 +23,9 @@ export default class Score implements Renderable {
       align: "center",
     });
   }
+  initialDraw(): void {
+    // do nothing
+  }
 
   render() {
     const { graphics } = this;
@@ -30,6 +33,5 @@ export default class Score implements Renderable {
     // sync graphics position with this position.
     graphics.x = this.pos.x;
     graphics.y = this.pos.y;
-    graphics.text = "" + this.value;
   }
 }

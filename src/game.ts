@@ -13,6 +13,7 @@ export interface Renderable {
   graphics: PIXI.DisplayObject;
   isAdded?: boolean;
   render(): void;
+  initialDraw(): void;
 }
 
 export default class Game {
@@ -89,6 +90,7 @@ export default class Game {
     renderables.forEach((x) => {
       if (!x.isAdded) {
         this.stage.addChild(x.graphics);
+        x.initialDraw();
         x.isAdded = true;
       }
 
