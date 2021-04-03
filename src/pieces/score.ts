@@ -1,19 +1,22 @@
 import * as PIXI from "pixi.js";
+import { Renderable } from "../game";
 
-export default class Score {
+export default class Score implements Renderable {
   pos: Vector;
   value: 0;
-  private text: PIXI.Text;
   static SIZE = 100;
 
-  constructor(private stage: PIXI.Container) {
+  graphics: PIXI.Text;
+  isAdded?: boolean;
+
+  constructor() {
     this.pos = {
       x: 0,
       y: 0,
     };
     this.value = 0;
 
-    this.text = new PIXI.Text(this.value.toString(), {
+    this.graphics = new PIXI.Text(this.value.toString(), {
       fontFamily: "Trebuchet MS",
       fontSize: Score.SIZE,
       fill: 0xffffff,
@@ -22,13 +25,11 @@ export default class Score {
   }
 
   render() {
-    const { text } = this;
-
-    this.stage.addChild(text);
+    const { graphics } = this;
 
     // sync graphics position with this position.
-    text.x = this.pos.x;
-    text.y = this.pos.y;
-    text.text = "" + this.value;
+    graphics.x = this.pos.x;
+    graphics.y = this.pos.y;
+    graphics.text = "" + this.value;
   }
 }

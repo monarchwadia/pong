@@ -9,6 +9,12 @@ type Player = {
   score: Score;
 };
 
+export interface Renderable {
+  graphics: PIXI.DisplayObject;
+  isAdded?: boolean;
+  render(): void;
+}
+
 export default class Game {
   user: Player;
   cpu: Player;
@@ -33,32 +39,32 @@ export default class Game {
     game.ball = undefined;
 
     // ADD USER PADDLE
-    const userPaddle = new Paddle(stage);
+    const userPaddle = new Paddle();
     userPaddle.pos.x = Paddle.GUTTER;
     userPaddle.pos.y = 0.15 * getBoardHeight();
     game.user.paddle = userPaddle;
 
     // ADD CPU PADDLE
-    const cpuPaddle = new Paddle(stage);
+    const cpuPaddle = new Paddle();
     cpuPaddle.pos.x = getBoardWidth() - Paddle.GUTTER - Paddle.WIDTH;
     cpuPaddle.pos.y = (getBoardHeight() - Paddle.HEIGHT) * 0.75;
     game.cpu.paddle = cpuPaddle;
 
     // ADD BALL
-    const ball = new Ball(stage);
+    const ball = new Ball();
     ball.pos.x = getBoardWidth() / 2;
     ball.pos.y = getBoardHeight() / 2;
     game.ball = ball;
 
     // ADD USER SCORE
-    const userScore = new Score(stage);
+    const userScore = new Score();
     userScore.value = 0;
     userScore.pos.x = getBoardWidth() * 0.35;
     userScore.pos.y = 25;
     game.user.score = userScore;
 
     // ADD CPU SCORE
-    const cpuScore = new Score(stage);
+    const cpuScore = new Score();
     cpuScore.value = 0;
     cpuScore.pos.x = getBoardWidth() * 0.6;
     cpuScore.pos.y = 25;
@@ -72,12 +78,21 @@ export default class Game {
   }
 
   render() {
-    [
+    const renderables: Renderable[] = [
       this.user.paddle,
       this.user.score,
       this.cpu.paddle,
       this.cpu.score,
       this.ball,
-    ].forEach((x) => x.render());
+    ];
+
+    renderables.forEach((x) => {
+      if (!x.isAdded) {
+        this.stage.addChild(x.graphics);
+        x.isAdded = true;
+      }
+
+      x.render();
+    });
   }
 }

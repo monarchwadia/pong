@@ -1,8 +1,10 @@
 import * as PIXI from "pixi.js";
+import { Renderable } from "../game";
 
-export default class Ball {
+export default class Ball implements Renderable {
   static RADIUS = 10;
 
+  isAadded?: boolean;
   pos: Vector = {
     x: 0,
     y: 0,
@@ -13,16 +15,14 @@ export default class Ball {
     y: 0,
   };
 
-  private graphics: PIXI.Graphics;
+  graphics: PIXI.DisplayObject;
 
-  constructor(private stage: PIXI.Container) {
+  constructor() {
     this.graphics = new PIXI.Graphics();
   }
 
   render() {
     const { graphics } = this;
-
-    this.stage.addChild(graphics);
 
     // sync graphics position with this position.
     graphics.x = this.pos.x;
