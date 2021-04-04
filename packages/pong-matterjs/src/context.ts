@@ -31,8 +31,8 @@ export default class Context {
     const walls = {
       top: wall(width / 2, 0, width, wallThickness),
       bottom: wall(width / 2, height, width, wallThickness),
-      left: wall(0, height / 2, wallThickness, height),
-      right: wall(width, height / 2, wallThickness, height),
+      left: wall(0, height / 2, wallThickness, height, true),
+      right: wall(width, height / 2, wallThickness, height, true),
     };
     this.addBodies(...Object.values(walls));
 

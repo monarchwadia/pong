@@ -1,11 +1,17 @@
 import Matter from "matter-js";
 
 // build walls
-const wall = (x: number, y: number, width: number, height: number) =>
+const wall = (
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  transparent = false
+) =>
   Matter.Bodies.rectangle(x, y, width, height, {
     isStatic: true,
     render: {
-      fillStyle: "#868e96",
+      fillStyle: transparent ? "#00000000" : "#868e96",
     },
     restitution: 1,
     friction: 0,

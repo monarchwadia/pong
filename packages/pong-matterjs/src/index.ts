@@ -12,8 +12,8 @@ const user = paddle(wallThickness + paddleGutter, height / 2);
 const cpu = paddle(width - wallThickness - paddleGutter, height / 2);
 
 Matter.Body.setVelocity(b, {
-  x: 15,
-  y: 15,
+  x: 5,
+  y: 5,
 });
 
 context.addBodies(b, user, cpu);
