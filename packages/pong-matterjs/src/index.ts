@@ -1,21 +1,15 @@
 import Matter, { Bodies } from "matter-js";
 import Context from "./context";
+import ball from "./ball";
 
 const context = new Context();
 context.init();
 
-const ball = Matter.Bodies.circle(500, 500, 10, {
-  restitution: 1,
-  friction: 0,
-  frictionAir: 0,
-  frictionStatic: 0,
-  density: 1,
-  inertia: Infinity,
-});
+const b = ball(500, 500, 10);
 
-Matter.Body.setVelocity(ball, {
+Matter.Body.setVelocity(b, {
   x: 15,
   y: 15,
 });
 
-context.addBodies(ball);
+context.addBodies(b);

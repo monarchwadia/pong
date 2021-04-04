@@ -1,5 +1,6 @@
 import Matter from "matter-js";
 import { width, height, wallThickness } from "./constants";
+import wall from "./wall";
 const { Engine, Render, Runner, World, Bodies, Body } = Matter;
 
 export default class Context {
@@ -27,19 +28,6 @@ export default class Context {
       scale: 0,
     });
 
-    // build walls
-    const wall = (x: number, y: number, width: number, height: number) =>
-      Bodies.rectangle(x, y, width, height, {
-        isStatic: true,
-        render: {
-          fillStyle: "#868e96",
-        },
-        restitution: 1,
-        friction: 0,
-        frictionStatic: 0,
-        frictionAir: 0,
-        inertia: Infinity,
-      });
     const walls = {
       top: wall(width / 2, 0, width, wallThickness),
       bottom: wall(width / 2, height, width, wallThickness),
