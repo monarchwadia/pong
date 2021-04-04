@@ -1,6 +1,7 @@
 import * as PIXI from "pixi.js";
 import { Renderable } from "../game";
 import { getBoardHeight } from "../utils";
+import SAT from "sat";
 
 export default class Paddle implements Renderable {
   static WIDTH = 15;
@@ -18,6 +19,13 @@ export default class Paddle implements Renderable {
 
   constructor() {
     this.graphics = new PIXI.Graphics();
+  }
+  getPolygon(): SAT.Circle | SAT.Box {
+    return new SAT.Box(
+      new SAT.Vector(this.pos.x, this.pos.y),
+      Paddle.WIDTH,
+      Paddle.HEIGHT
+    );
   }
 
   render() {

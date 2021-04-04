@@ -1,5 +1,6 @@
 import * as PIXI from "pixi.js";
 import { Renderable } from "../game";
+import SAT from "sat";
 
 export default class Ball implements Renderable {
   static RADIUS = 10;
@@ -30,5 +31,9 @@ export default class Ball implements Renderable {
     const { graphics } = this;
     graphics.beginFill(0xff0000);
     graphics.drawCircle(0, 0, Ball.RADIUS);
+  }
+
+  getPolygon() {
+    return new SAT.Circle(new SAT.Vector(this.pos.x, this.pos.y), Ball.RADIUS);
   }
 }

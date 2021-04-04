@@ -27,6 +27,10 @@ export default class Score implements Renderable {
     // do nothing
   }
 
+  getPolygon() {
+    return null;
+  }
+
   render() {
     const { graphics } = this;
 

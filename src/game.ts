@@ -14,6 +14,7 @@ export interface Renderable {
   isAdded?: boolean;
   render(): void;
   initialDraw(): void;
+  getPolygon(): SAT.Circle | SAT.Box | null;
 }
 
 export default class Game {
@@ -55,6 +56,9 @@ export default class Game {
     const ball = new Ball();
     ball.pos.x = getBoardWidth() / 2;
     ball.pos.y = getBoardHeight() / 2;
+    // for now, set velocity to fixed values
+    ball.vel.x = -5;
+    ball.vel.y = -2;
     game.ball = ball;
 
     // ADD USER SCORE
