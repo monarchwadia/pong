@@ -2,19 +2,10 @@
   "name": "pong",
   "version": "1.0.0",
   "main": "index.js",
-  "author": "Monarch Wadia",
+  "author": "Monarch Wadia <monarch@mintbean.io>",
   "license": "MIT",
-  "type": "module",
-  "scripts": {
-    "start": "snowpack dev",
-    "build": "snowpack build"
-  },
-  "devDependencies": {
-    "@types/sat": "^0.0.31",
-    "snowpack": "^3.2.2"
-  },
-  "dependencies": {
-    "pixi.js": "^6.0.1",
-    "sat": "^0.8.0"
-  }
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
 }
