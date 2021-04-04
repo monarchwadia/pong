@@ -34,6 +34,11 @@ export default class Context {
         render: {
           fillStyle: "#868e96",
         },
+        restitution: 1,
+        friction: 0,
+        frictionStatic: 0,
+        frictionAir: 0,
+        inertia: Infinity,
       });
     const walls = {
       top: wall(width / 2, 0, width, wallThickness),
