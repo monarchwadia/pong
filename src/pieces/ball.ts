@@ -23,6 +23,20 @@ export default class Ball implements Renderable {
     this.graphics = new PIXI.Graphics();
   }
 
+  getDimensions() {
+    const top = this.pos.y - Ball.RADIUS;
+    const bottom = top + Ball.RADIUS * 2;
+    const left = this.pos.x - Ball.RADIUS;
+    const right = left + Ball.RADIUS * 2;
+
+    return {
+      top,
+      left,
+      bottom,
+      right,
+    };
+  }
+
   render() {
     this.graphics.x = this.pos.x;
     this.graphics.y = this.pos.y;

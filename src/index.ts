@@ -4,6 +4,7 @@ import Game from "./game";
 import SAT from "sat";
 import { getBoardHeight, getBoardWidth } from "./utils";
 import Ball from "./pieces/ball";
+import Paddle from "./pieces/paddle";
 
 declare global {
   interface Window {
@@ -50,24 +51,32 @@ controls.listen();
   });
 
   // detect collision with top/bottom walls
+  const ballDim = game.ball.getDimensions();
   if (
-    game.ball.pos.y - Ball.RADIUS <= 0 || // hit top
-    game.ball.pos.y + Ball.RADIUS * 2 >= getBoardHeight() // hit bottom
+    ballDim.top <= 0 || // hit top
+    ballDim.bottom >= getBoardHeight() // hit bottom
   ) {
     game.ball.vel.y = -game.ball.vel.y;
   }
 
   // detect collision with left/right walls
-  if (game.ball.pos.x - Ball.RADIUS <= 0) {
+  if (ballDim.left <= 0) {
     // cpu win
     game.cpu.score.increment();
     game.ball.reinitialize(false);
   }
 
-  if (game.ball.pos.x + Ball.RADIUS >= getBoardWidth()) {
+  if (ballDim.right >= getBoardWidth()) {
     // player win
     game.user.score.increment();
     game.ball.reinitialize(true);
+  }
+
+  // cpu move
+  if (ballDim.top < game.cpu.paddle.pos.y) {
+    game.cpu.paddle.moveUp();
+  } else if (ballDim.bottom > game.cpu.paddle.pos.y + Paddle.HEIGHT) {
+    game.cpu.paddle.moveDown();
   }
 
   game.update();

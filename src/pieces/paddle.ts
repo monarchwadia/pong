@@ -7,7 +7,7 @@ export default class Paddle implements Renderable {
   static WIDTH = 15;
   static HEIGHT = 150;
   static GUTTER = 10; // the gutter between the paddle and the wall behind it.
-  static PADDLE_SPEED = 10;
+  static PADDLE_SPEED = 5;
 
   isAdded?: boolean;
   pos: Vector = {
