@@ -10,7 +10,11 @@
     "build": "snowpack build"
   },
   "devDependencies": {
+    "@types/matter-js": "^0.14.11",
     "snowpack": "^3.2.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "matter-js": "^0.16.1",
+    "poly-decomp": "^0.3.0"
+  }
 }
