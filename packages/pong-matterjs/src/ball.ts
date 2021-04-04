@@ -8,6 +8,9 @@ const ball = (x: number, y: number, radius: number) =>
     frictionStatic: 0,
     density: 1,
     inertia: Infinity,
+    render: {
+      fillStyle: "#ff0000",
+    },
   });
 
 export default ball;
