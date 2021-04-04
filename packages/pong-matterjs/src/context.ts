@@ -7,6 +7,12 @@ export default class Context {
   engine: Matter.Engine;
   runner: Matter.Runner;
   render: Matter.Render;
+  walls: {
+    top: Matter.Body;
+    bottom: Matter.Body;
+    left: Matter.Body;
+    right: Matter.Body;
+  };
 
   init() {
     // setup basic MatterJS constructs
@@ -28,13 +34,13 @@ export default class Context {
       scale: 0,
     });
 
-    const walls = {
+    this.walls = {
       top: wall(width / 2, 0, width, wallThickness),
       bottom: wall(width / 2, height, width, wallThickness),
       left: wall(0, height / 2, wallThickness, height, true),
       right: wall(width, height / 2, wallThickness, height, true),
     };
-    this.addBodies(...Object.values(walls));
+    this.addBodies(...Object.values(this.walls));
 
     // start matterjs
     Runner.run(this.runner, this.engine);
