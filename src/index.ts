@@ -2,6 +2,8 @@ import * as PIXI from "pixi.js";
 import Controls, { Direction } from "./controls";
 import Game from "./game";
 import SAT from "sat";
+import { getBoardHeight, getBoardWidth } from "./utils";
+import Ball from "./pieces/ball";
 
 declare global {
   interface Window {
@@ -39,11 +41,33 @@ controls.listen();
 
   // detect collision with ball
   const ballPoly = game.ball.getPolygon();
-  const paddlePoly = (game.user.paddle.getPolygon() as SAT.Box).toPolygon();
+  [game.user.paddle, game.cpu.paddle].forEach((paddle) => {
+    const paddlePoly = (paddle.getPolygon() as SAT.Box).toPolygon();
+    if (SAT.testPolygonCircle(paddlePoly, ballPoly)) {
+      game.ball.vel.x = -game.ball.vel.x;
+      // game.ball.vel.y = -game.ball.vel.y;
+    }
+  });
 
-  if (SAT.testPolygonCircle(paddlePoly, ballPoly)) {
-    game.ball.vel.x = -game.ball.vel.x;
+  // detect collision with top/bottom walls
+  if (
+    game.ball.pos.y - Ball.RADIUS <= 0 || // hit top
+    game.ball.pos.y + Ball.RADIUS * 2 >= getBoardHeight() // hit bottom
+  ) {
     game.ball.vel.y = -game.ball.vel.y;
+  }
+
+  // detect collision with left/right walls
+  if (game.ball.pos.x - Ball.RADIUS <= 0) {
+    // cpu win
+    game.cpu.score.increment();
+    game.ball.reinitialize(false);
+  }
+
+  if (game.ball.pos.x + Ball.RADIUS >= getBoardWidth()) {
+    // player win
+    game.user.score.increment();
+    game.ball.reinitialize(true);
   }
 
   game.update();

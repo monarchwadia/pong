@@ -27,6 +27,11 @@ export default class Score implements Renderable {
     // do nothing
   }
 
+  increment() {
+    this.value++;
+    this.graphics.text = this.value.toString();
+  }
+
   getPolygon() {
     return null;
   }

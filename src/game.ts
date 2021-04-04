@@ -57,8 +57,7 @@ export default class Game {
     ball.pos.x = getBoardWidth() / 2;
     ball.pos.y = getBoardHeight() / 2;
     // for now, set velocity to fixed values
-    ball.vel.x = -5;
-    ball.vel.y = -2;
+    ball.reinitialize();
     game.ball = ball;
 
     // ADD USER SCORE
